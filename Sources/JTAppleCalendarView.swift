@@ -47,7 +47,7 @@ open class JTAppleCalendarView: UICollectionView {
     }
     
     /// The scroll direction of the sections in JTAppleCalendar.
-    open var scrollDirection: UICollectionViewScrollDirection!
+    open var scrollDirection: UICollectionView.ScrollDirection!
     
     /// Enables/Disables the stretching of date cells. When enabled cells will stretch to fit the width of a month in case of a <= 5 row month.
     open var allowsDateCellStretching = true
@@ -147,7 +147,7 @@ open class JTAppleCalendarView: UICollectionView {
         
         if calendarViewLayout.thereAreHeaders && scrollDirection == .vertical {
             let indexPath = IndexPath(item: 0, section: sectionIndexPath.section)
-            guard let attributes = calendarViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath) else { return retval }
+            guard let attributes = calendarViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { return retval }
             
             let maxYCalendarOffset = max(0, self.contentSize.height - self.frame.size.height)
             retval = CGPoint(x: attributes.frame.origin.x,y: min(maxYCalendarOffset, attributes.frame.origin.y))
@@ -166,7 +166,7 @@ open class JTAppleCalendarView: UICollectionView {
         return retval
     }
     
-    open var sectionInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    open var sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     open var minimumInteritemSpacing: CGFloat = 0
     open var minimumLineSpacing: CGFloat = 0
     
@@ -185,9 +185,9 @@ open class JTAppleCalendarView: UICollectionView {
     open var scrollingMode: ScrollingMode = .stopAtEachCalendarFrameWidth {
         didSet {
             switch scrollingMode {
-            case .stopAtEachCalendarFrameWidth: decelerationRate = UIScrollViewDecelerationRateFast
-            case .stopAtEach, .stopAtEachSection: decelerationRate = UIScrollViewDecelerationRateFast
-            case .nonStopToSection, .nonStopToCell, .nonStopTo, .none: decelerationRate = UIScrollViewDecelerationRateNormal
+            case .stopAtEachCalendarFrameWidth: decelerationRate = UIScrollView.DecelerationRate.fast
+            case .stopAtEach, .stopAtEachSection: decelerationRate = UIScrollView.DecelerationRate.fast
+            case .nonStopToSection, .nonStopToCell, .nonStopTo, .none: decelerationRate = UIScrollView.DecelerationRate.normal
             }
             #if os(iOS)
                 switch scrollingMode {
@@ -235,7 +235,7 @@ open class JTAppleCalendarView: UICollectionView {
         
         super.dataSource = self
         super.delegate = self
-        decelerationRate = UIScrollViewDecelerationRateFast
+        decelerationRate = UIScrollView.DecelerationRate.fast
         
         #if os(iOS)
             if isPagingEnabled {
@@ -260,7 +260,7 @@ open class JTAppleCalendarView: UICollectionView {
         return retval
     }
     
-    func scrollTo(indexPath: IndexPath, triggerScrollToDateDelegate: Bool, isAnimationEnabled: Bool, position: UICollectionViewScrollPosition, extraAddedOffset: CGFloat, completionHandler: (() -> Void)?) {
+    func scrollTo(indexPath: IndexPath, triggerScrollToDateDelegate: Bool, isAnimationEnabled: Bool, position: UICollectionView.ScrollPosition, extraAddedOffset: CGFloat, completionHandler: (() -> Void)?) {
         isScrollInProgress = true
         if let validCompletionHandler = completionHandler {
             self.delayedExecutionClosure.append(validCompletionHandler)
@@ -358,7 +358,7 @@ open class JTAppleCalendarView: UICollectionView {
                                  completionHandler: (() -> Void)? = nil) {
         if !calendarViewLayout.thereAreHeaders { return }
         let indexPath = IndexPath(item: 0, section: section)
-        guard let attributes = calendarViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath) else { return }
+        guard let attributes = calendarViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { return }
         
         isScrollInProgress = true
         if let validHandler = completionHandler { self.delayedExecutionClosure.append(validHandler) }
@@ -466,7 +466,7 @@ open class JTAppleCalendarView: UICollectionView {
     }
     func restoreSelectionStateForCellAtIndexPath(_ indexPath: IndexPath) {
         if theSelectedIndexPaths.contains(indexPath) {
-            selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition() )
+            selectItem(at: indexPath, animated: false, scrollPosition: UICollectionView.ScrollPosition() )
         }
     }
 }
@@ -477,7 +477,7 @@ extension JTAppleCalendarView {
                       indexPath: IndexPath? = nil,
                       triggerScrollToDateDelegate: Bool = true,
                       isAnimationEnabled: Bool,
-                      position: UICollectionViewScrollPosition? = .left,
+                      position: UICollectionView.ScrollPosition? = .left,
                       extraAddedOffset: CGFloat = 0,
                       completionHandler: (() -> Void)?) {
         

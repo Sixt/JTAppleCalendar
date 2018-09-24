@@ -34,7 +34,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
     
     var cellSize: CGSize = CGSize.zero
     var itemSizeWasSet: Bool = false
-    var scrollDirection: UICollectionViewScrollDirection = .horizontal
+    var scrollDirection: UICollectionView.ScrollDirection = .horizontal
     var maxMissCount: Int = 0
     var cellCache: [Int: [(Int, Int, CGFloat, CGFloat, CGFloat, CGFloat)]] = [:]
     var headerCache: [Int: (Int, Int, CGFloat, CGFloat, CGFloat, CGFloat)] = [:]
@@ -342,7 +342,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
                     let data = headerCache[sectionIndex]!
 
                     if CGRect(x: data.2, y: data.3, width: data.4, height: data.5).intersects(rect) {
-                        let attrib = layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: IndexPath(item: data.0, section: data.1))
+                        let attrib = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: data.0, section: data.1))
                         attributes.append(attrib!)
                     }
                 }
@@ -659,7 +659,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
             return []
         }
         if excludeHeaders == true {
-            return attributes.filter { $0.representedElementKind != UICollectionElementKindSectionHeader }
+            return attributes.filter { $0.representedElementKind != UICollectionView.elementKindSectionHeader }
         }
         return attributes
     }
@@ -675,7 +675,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
         if let focusIndexPath = focusIndexPath {
             if thereAreHeaders {
                 let headerIndexPath = IndexPath(item: 0, section: focusIndexPath.section)
-                if let headerAttr = layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: headerIndexPath) {
+                if let headerAttr = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: headerIndexPath) {
                     retval = scrollDirection == .horizontal ? CGPoint(x: headerAttr.frame.origin.x, y: 0) : CGPoint(x: 0, y: headerAttr.frame.origin.y)
                 }
             } else {
