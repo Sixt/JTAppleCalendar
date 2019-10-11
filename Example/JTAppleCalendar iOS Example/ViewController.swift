@@ -205,7 +205,7 @@ class ViewController: UIViewController {
         // Registering header cells is optional
         
         calendarView.register(UINib(nibName: "PinkSectionHeaderView", bundle: Bundle.main),
-                              forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                              forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                               withReuseIdentifier: "PinkSectionHeaderView")
         
 //        calendarView.registerDecorationView(nib: UINib(nibName: "SectionDecorationView", bundle: Bundle.main))
