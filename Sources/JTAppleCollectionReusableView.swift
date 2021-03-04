@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 /// The header view class of the calendar
 open class JTAppleCollectionReusableView: UICollectionReusableView {
     /// Initializes and returns a newly allocated view object with the specified frame rectangle.

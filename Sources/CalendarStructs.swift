@@ -22,6 +22,7 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 
 /// Describes which month the cell belongs to
 /// - ThisMonth: Cell belongs to the current month

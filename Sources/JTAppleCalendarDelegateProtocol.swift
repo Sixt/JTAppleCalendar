@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 protocol JTAppleCalendarDelegateProtocol: class {
     // Variables
     var allowsDateCellStretching: Bool {get set}

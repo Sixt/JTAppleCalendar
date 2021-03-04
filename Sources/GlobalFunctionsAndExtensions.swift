@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 extension Calendar {
     static let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()

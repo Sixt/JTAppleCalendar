@@ -9,7 +9,7 @@
 import XCTest
 @testable import JTAppleCalendar
 
-class JTAppleCalendar_iOSTests: XCTestCas(width, cellSize.height)e {
+class JTAppleCalendar_iOSTests: XCTestCase {
     let calendarView = JTAppleCalendarView()
     let formatter: DateFormatter = {
         let aFormatter = DateFormatter()

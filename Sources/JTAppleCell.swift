@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 /// The JTAppleCell class defines the attributes and
 /// behavior of the cells that appear in JTAppleCalendarView objects.
 open class JTAppleCell: UICollectionViewCell {

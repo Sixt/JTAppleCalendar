@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 /// Describes a scroll destination
 public enum SegmentDestination {
     /// next the destination is the following segment
